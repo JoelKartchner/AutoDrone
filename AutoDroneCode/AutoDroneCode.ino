@@ -44,11 +44,15 @@
 #define THROTTLE    1
 #define RUDDER      2
 #define ELEVATOR    3
-#define AILERON    4
+#define AILERON     4
 #define AUX1        5
 #define AUX2        6
 // Pin to run PPM on
 #define PPM_PIN A0
+
+#if IMU
+// Place IMU Specific #defines here
+#endif
 
 
 ////////////////////////////////////////
@@ -73,6 +77,19 @@ short elevator = 0;
 short aileron = 0;
 short aux1 = 0;
 short aux2 = 0;
+
+/////////////////////////////////////////////
+// IMU Control variables
+// THis code should work for MPU6050 6 axis IMUs
+#if IMU
+MPU6050 mpu;
+bool dmpReady = false;  // set true if DMP init was successful
+uint8_t mpuIntStatus;   // holds actual interrupt status byte from MPU
+uint8_t devStatus;      // return status after each device operation (0 = success, !0 = error)
+uint16_t packetSize;    // expected DMP packet size (default is 42 bytes)
+uint16_t fifoCount;     // count of all bytes currently in FIFO
+uint8_t fifoBuffer[64]; // FIFO storage buffer
+#endif
 
 void setup() {
   #if DEBUG
