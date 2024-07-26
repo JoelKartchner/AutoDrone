@@ -13,6 +13,10 @@
 //    - Full Auto Mode: Plane flys itself. Will follow route set up in code. 
 //      This can either be a fixed flight pattern (like a loop), or use GPS data to go to specific locations.
 
+////////////////////////////////////////
+// Current Status:
+// TEST 1
+
 
 ///////////////////////////////////////////
 // Debug Statements
